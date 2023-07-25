@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 """
-This script uses the LR mask to correct the chirality of segmentations generated with nnUNet. The final aseg will be output to:
-/home/exacloud/gscratch/InspireLab/data/HCP/processed/ECHO/pipeline_inputs/nnunet/asegs_cc
+This script uses the LR mask to correct the chirality of segmentations generated with nnUNet. 
+The final aseg will be output to nnunet/asegs_cc
 
 Arguments:
     job_name: job name used when running PreFreesurfer
@@ -86,11 +86,10 @@ def correct_chirality(nifti_input_file_path, segment_lookup_table, left_right_ma
     nib.save(fixed_img, nifti_output_file_path)
 
 def wrapper(job_name):
-    root_wd = '/home/exacloud/gscratch/InspireLab/data/HCP/processed/ECHO/pipeline_inputs'
-    asegs_pre_cc_dir = '{}/nnunet/asegs_pre_cc/{}'.format(root_wd, job_name)
-    LR_mask_dir = '{}/nnunet/LR_masks'.format(root_wd)
-    asegs_cc_dir = '{}/nnunet/asegs_cc'.format(root_wd)
-    segment_LUT = '/home/exacloud/gscratch/InspireLab/projects/INFANT/ECHO_processing/code/util/FreeSurferColorLUT.txt'
+    asegs_pre_cc_dir = 'nnunet/asegs_pre_cc/{}'.format(job_name)
+    LR_mask_dir = 'nnunet/LR_masks'
+    asegs_cc_dir = 'nnunet/asegs_cc'
+    segment_LUT = 'util/FreeSurferColorLUT.txt'
 
     os.chdir('{}'.format(asegs_pre_cc_dir))
     sublist = glob.glob('sub-*nii.gz')
