@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 """
-This script uses the LR mask to correct the chirality of segmentations generated with nnUNet. The final aseg will be output to:
-/home/exacloud/gscratch/InspireLab/data/HCP/processed/ECHO/pipeline_inputs/nnunet/asegs_cc
+This script uses the LR mask to correct the chirality of segmentations generated with nnUNet.
 
 Arguments:
     sub_LRmask_dir: location of directory that contains the LRmask.nii.gz file generated for a subject
