@@ -2,8 +2,7 @@
 
 """
 This script generates a L/R mask for the nnuNet segmentation that will be used for chirality correction.
-The LR masks generated will output to:
- /home/exacloud/gscratch/InspireLab/data/HCP/processed/ECHO/pipeline_inputs/nnunet/LR_masks/<SUB>_<SES>
+The LR masks generated will output to: LR_masks/<SUB>_<SES>
 
 Arguments:
     input_dir: folder path to collection of asegs that require chirality correction
@@ -24,7 +23,7 @@ from docopt import docopt
 
 
 def LR_mask_reg(input_dir, prefree_anats_dir, t_mod):
-    templates_root_dir = '/home/exacloud/gscratch/InspireLab/projects/INFANT/ECHO_processing/code/util/chirality_correction_templates'
+    templates_root_dir = 'util/chirality_correction_templates'
 
     if t_mod == 'T2': #USE T2
         templatehead = '{}/1mo_T2w_acpc_dc_restore.nii.gz'.format(templates_root_dir)
@@ -73,9 +72,9 @@ def LR_mask_reg(input_dir, prefree_anats_dir, t_mod):
 
                 os.chdir('{}'.format(sub_LR_mask_dir))
 
-                sbatch = 'sbatch -A fnl_lab --job-name {} --partition exacloud --cpus-per-task 4 --mem-per-cpu 60GB --time 36:00:00 ' \
+                sbatch = 'sbatch --job-name {} --cpus-per-task 4 --mem-per-cpu 60GB --time 36:00:00 ' \
                          '--output {}/ANTS.out --error {}/ANTS.err ' \
-                         '/home/exacloud/gscratch/InspireLab/projects/INFANT/ECHO_processing/code/util/LR_mask_registration.sh ' \
+                         'util/LR_mask_registration.sh ' \
                          '{} {} {}'.format(subses,
                                            sub_LR_mask_dir, sub_LR_mask_dir,
                                            sub_anat, templatehead, templatemask)
