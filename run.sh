@@ -3,12 +3,12 @@
 #SBATCH -t 1:00:00
 #SBATCH -N 1
 #SBATCH --ntasks 20
-#SBATCH --cpus-per-task 4
-#SBATCH --mem-per-cpu 32gb
+#SBATCH --mem=80gb
+#SBATCH -p v100
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=<YOUR@EMAIL.edu>
-#SBATCH -o /path/to/out/%A_chir_corr.out
-#SBATCH -e /path/to/out/%A_chir_corr.err
+#SBATCH --mail-user=lmoore@umn.edu
+#SBATCH -o /home/feczk001/shared/projects/chir_corr/logs/%A_chir_corr.out
+#SBATCH -e /home/feczk001/shared/projects/chir_corr/logs/%A_chir_corr.err
 #SBATCH -J chirality-correction
 #SBATCH -A feczk001
 
